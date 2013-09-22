@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>AngularJS Demo</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper" ng-app="feeder">
+        <div data-ng-controller="feedcntl">
+            <nav class="{{active}}">
+                <a href="#" class="siteMashable" ng-click="feedSrc='http://feeds.mashable.com/Mashable';loadFeed($event);active='siteMashable'">Mashable</a>
+                <a href="#" class="siteGizmodo" ng-click="feedSrc='http://feeds.gawker.com/gizmodo/full';loadFeed($event);active='siteGizmodo'">Gizmodo</a>
+                <a href="#" class="siteTechCrunch" ng-click="feedSrc='http://feeds.feedburner.com/TechCrunch/';loadFeed($event);active='siteTechCrunch'">TechCrunch</a>                  
+                <a href="#" class="siteZDNet" ng-click="feedSrc='http://www.zdnet.com/blog/rss.xml';loadFeed($event);active='siteZDNet'">ZDNet</a>
+            </nav>
+
+            <p id="intro" class="{{active}}">Select a Feed to display.</p>
+
+            <section class="feedcontainer">
+                <article ng-repeat="feed in feeds | filter:filterText">
+                    <h2><a href="{{feed.link}}">{{feed.title}}</a></h2>
+                    <h3>{{feed.publishedDate}}</h3>
+                    <p>{{feed.contentSnippet}}</p>
+                    <span><a href="{{feed.link}}">more...</a></span>
+                </article>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
